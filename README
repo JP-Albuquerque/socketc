@@ -1,0 +1,29 @@
+Redes Industriais de Comunicação
+Engenharia de Controle e Automação
+IFES – Campus Serra
+2017-2
+Prof: Rafael Emerick Z. De Oliveira
+Laboratório 2 – Socket em C
+
+Crie uma aplicação cliente e servidor, em linguagem C, capaz de executar o teste de envio de ping e pong. O cliente
+inicializará a conexão enviando uma mensagem de ping, salvando o timestamp do momento do envio, O servidor
+responderá a mensagem para o cliente que calculará a diferente de tempo da ida e volta da mensagem (normalmente em
+milisegundos).
+Deve ser tratada a opação de teste sobre o protocolo UDP e TCP e realizadas medidas comparativas entre os dois
+protocolos, quanto ao tempo de resposta e à quantidade de linhas envolvidas no ambiente.
+
+Ambiente Linux
+Referências:
+http://www.csd.uoc.gr/~hy556/material/tutorials/cs556-3rd-tutorial.pdf
+http://www.binarytides.com/socket-programming-c-linux-tutorial/
+http://www.binarytides.com/programming-udp-sockets-c-linux/
+
+Atividade:
+1) Implemente o cliente e servidor, dando opção ao usuário qual pilha de transporte será usada. (TCP ou UDP). O
+cliente e o servidor devem ser executados em máquinas diferentes, como também na mesma máquina (utilize o ip de
+loopback para esse fim).
+2) Realize o testes de envio de 1000 mensagens e calcule o tempo médio, mínimo e máximo para cada protocolo de
+transporte. ( a quantidade de mensagens deve ser um parâmetro de entrada do cliente, juntamente com o tipo de
+protocolo de transporte.
+3) Compare os testes obtidos utilizando TCP e UDP. Explique a diferença encontrada.
+4) (opcional) Realize o teste entre uma máquina Linux e Windows, os resultados são os mesmos do item 3?
