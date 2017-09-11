@@ -12,6 +12,7 @@ int main(int argc , char *argv[])
 	int number[10],i, protocol, aux = 1, slen = sizeof(client);
 	double numOfPackets = 0;
 	int sumOfTime = 0;
+	float *v;
 	char ip[16];
 	char temp[10];
 	clock_t inicio, fim;
@@ -32,6 +33,8 @@ int main(int argc , char *argv[])
 
 	printf("\nQuantos pacotes devem ser enviados: ");
 	scanf("%lf", &numOfPackets);
+
+	v = (int *) malloc(numOfPackets * sizeof(int));
  
 	if( protocol == 1){ // Se o protocolo escolhido é TCP
 
@@ -73,15 +76,19 @@ int main(int argc , char *argv[])
 			} // fim if
 			
 			fim = clock();
+			v[i] = (fim - inicio);
 			sumOfTime = sumOfTime + (fim - inicio);
 
 		} // fim for
+
+		bubble_sort(v, i);
 		 
 		puts("Server reply :\n");
 		puts(server_reply);
 		
-		printf("Tempo gasto: %lf segundos.\n",((double)((sumOfTime/numOfPackets)/CLOCKS_PER_SEC)));
-
+		printf("Tempo mínimo: %.2f microssegundos.\n",v[1]);
+		printf("Tempo médio: %0.2f microssegundos.\n",sumOfTime/numOfPackets);
+		printf("Tempo máximo: %0.2f microssegundos.\n",v[i-1]);
 	} // fim if de TCP
 	else if( protocol == 2){ // Se o protocolo escolhido é UDP
 
@@ -115,16 +122,39 @@ int main(int argc , char *argv[])
 			}
 			
 			fim = clock();
+			v[i] = (fim - inicio);
 			sumOfTime = sumOfTime + (fim - inicio);
 		} // fim for
 
+		bubble_sort(v, i);
+		 
 		puts("Server reply :\n");
 		puts(server_reply);
-
-		printf("Tempo gasto: %lf segundos.\n",((double)((sumOfTime/numOfPackets)/CLOCKS_PER_SEC)));
+		
+		printf("Tempo mínimo: %.2f microssegundos.\n",v[1]);
+		printf("Tempo médio: %0.2f microssegundos.\n",sumOfTime/numOfPackets);
+		printf("Tempo máximo: %0.2f microssegundos.\n",v[i-1]);
 	} // fim else if de UDP
 	 
 	close(sock);
+
+	free(v);
 	
 	return 0;
-}
+} // fim função main
+
+void bubble_sort(int list[], int n)
+{
+	 int c, d, t;
+	 
+	for (c = 0 ; c < ( n - 1 ); c++) {
+		for (d = 0 ; d < n - c - 1; d++) {
+			if (list[d] > list[d+1]) {
+			/* Swapping */
+			t = list[d];
+			list[d] = list[d+1];
+			list[d+1] = t;
+			} // fim if
+		} // fim for interno
+	} // fim for externo
+} // fim função bubble_sort
