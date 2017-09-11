@@ -86,9 +86,9 @@ int main(int argc , char *argv[])
 		puts("Server reply :\n");
 		puts(server_reply);
 		
-		printf("Tempo mínimo: %.2f microssegundos.\n",v[1]);
-		printf("Tempo médio: %0.2f microssegundos.\n",sumOfTime/numOfPackets);
-		printf("Tempo máximo: %0.2f microssegundos.\n",v[i-1]);
+		printf("Tempo mínimo: %.2f milissegundos.\n",v[1]);
+		printf("Tempo médio: %0.2f milissegundos.\n",sumOfTime/numOfPackets);
+		printf("Tempo máximo: %0.2f milissegundos.\n",v[i-1]);
 	} // fim if de TCP
 	else if( protocol == 2){ // Se o protocolo escolhido é UDP
 
@@ -131,9 +131,9 @@ int main(int argc , char *argv[])
 		puts("Server reply :\n");
 		puts(server_reply);
 		
-		printf("Tempo mínimo: %.2f microssegundos.\n",v[1]);
-		printf("Tempo médio: %0.2f microssegundos.\n",sumOfTime/numOfPackets);
-		printf("Tempo máximo: %0.2f microssegundos.\n",v[i-1]);
+		printf("Tempo mínimo: %.2f milissegundos.\n",v[1]);
+		printf("Tempo médio: %0.2f milissegundos.\n",sumOfTime/numOfPackets);
+		printf("Tempo máximo: %0.2f milissegundos.\n",v[i-1]);
 	} // fim else if de UDP
 	 
 	close(sock);
