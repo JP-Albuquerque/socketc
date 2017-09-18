@@ -35,7 +35,7 @@ int main(int argc , char *argv[])
 	puts("bind UDP done");
 
 	//Listen
-	listen(socket_desc_UDP , 5);
+	//listen(socket_desc_UDP , 5);
 
 	while( (read_size = recvfrom(socket_desc_UDP , &message , 10*sizeof(int), 0, (struct sockaddr *)&client, &slen)) > 0 ) {
 		// print client msg at server side
@@ -78,14 +78,16 @@ int main(int argc , char *argv[])
 			puts("Send failed");
 			return 1;
 		} // fim if	 
+		for( i = 1 ; i <= 80; i++ ){
+			response[i] = 0;
+
+			if (i==79) flag=0;
+		}
 	} // fim while
 
-	if(read_size > 0) {
-		puts("\nClient disconnected");
-	} // fim if
-	else if(read_size == -1) {
-	 	perror("recvfrom failed");
-	} // fim else if
+	//for( i = 1 ; i <= 80; i++ ){
+	//	response[i] = 0;
+	//}
 	 
 	return 0;
 } // fim função main
